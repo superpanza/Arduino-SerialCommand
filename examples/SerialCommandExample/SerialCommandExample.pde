@@ -4,7 +4,7 @@
 
 #include <SerialCommand.h>
 
-#define arduinoLED 13   // Arduino LED on board
+#define arduinoLED 9   // Arduino LED on board
 
 SerialCommand sCmd(Serial);     // The demo SerialCommand object. You can pass Serial1, Serial2, Serial3 as well
 

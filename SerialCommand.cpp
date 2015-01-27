@@ -26,7 +26,7 @@
 /**
  * Constructor with Serial channel specification
  */
-SerialCommand::SerialCommand(HarwareSerial& serial)
+SerialCommand::SerialCommand(HardwareSerial& serial)
   : commandList(NULL),
     commandCount(0),
     defaultHandler(NULL),
