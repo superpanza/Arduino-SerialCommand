@@ -44,7 +44,11 @@
 
 class SerialCommand {
   public:
-    SerialCommand();      // Constructor
+    /*
+     * Constructor getting the desired Serial to listen to
+     * @serial
+     */
+    SerialCommand(HardwareSerial& serial);
     void addCommand(const char *command, void(*function)());  // Add a command to the processing dictionary.
     void setDefaultHandler(void (*function)(const char *));   // A handler to call when no valid command received.
 
@@ -53,6 +57,7 @@ class SerialCommand {
     char *next();         // Returns pointer to next token found in command buffer (for getting arguments to commands).
 
   private:
+    HardwareSerial& _HardSerial;
     // Command/handler dictionary
     struct SerialCommandCallback {
       char command[SERIALCOMMAND_MAXCOMMANDLENGTH + 1];

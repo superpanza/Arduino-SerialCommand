@@ -24,19 +24,19 @@
 #include "SerialCommand.h"
 
 /**
- * Constructor makes sure some things are set.
+ * Constructor with Serial channel specification
  */
-SerialCommand::SerialCommand()
+SerialCommand::SerialCommand(HarwareSerial& serial)
   : commandList(NULL),
     commandCount(0),
     defaultHandler(NULL),
     term('\n'),           // default terminator for commands, newline character
+    _HardSerial(serial),
     last(NULL)
 {
   strcpy(delim, " "); // strtok_r needs a null-terminated string
   clearBuffer();
 }
-
 /**
  * Adds a "command" and a handler function to the list of available commands.
  * This is used for matching a found token in the buffer, and gives the pointer
@@ -71,8 +71,8 @@ void SerialCommand::setDefaultHandler(void (*function)(const char *)) {
  * buffer for a prefix command, and calls handlers setup by addCommand() member
  */
 void SerialCommand::readSerial() {
-  while (Serial.available() > 0) {
-    char inChar = Serial.read();   // Read single available character, there may be more waiting
+  while (_HardSerial.available() > 0) {
+    char inChar = _HardSerial.read();   // Read single available character, there may be more waiting
     #ifdef SERIALCOMMAND_DEBUG
       Serial.print(inChar);   // Echo back to serial stream
     #endif

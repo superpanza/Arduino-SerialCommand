@@ -6,7 +6,7 @@
 
 #define arduinoLED 13   // Arduino LED on board
 
-SerialCommand sCmd;     // The demo SerialCommand object
+SerialCommand sCmd(Serial);     // The demo SerialCommand object. You can pass Serial1, Serial2, Serial3 as well
 
 void setup() {
   pinMode(arduinoLED, OUTPUT);      // Configure the onboard LED for output
